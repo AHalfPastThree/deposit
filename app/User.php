@@ -10,6 +10,12 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $primaryKey = 'id';
+
+    protected $table = 'users';
+
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,12 +34,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function wallet()
+    {
+        return $this->hasOne('App\Wallets');
+    }
+
+    public function deposit()
+    {
+        return $this->hasOne('App\Deposits');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Deposits');
+    }
 }

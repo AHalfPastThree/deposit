@@ -14,11 +14,11 @@ class CreateDepositsTable extends Migration
     public function up()
     {
         Schema::create('deposits', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('deposit.public.users')->onDelete('cascade');
             $table->integer('wallet_id')->unsigned();
-            $table->foreign('wallet_id')->references('id')->on('wallets')->onDelete('cascade');
+            $table->foreign('wallet_id')->references('id')->on('deposit.public.wallets')->onDelete('cascade');
             $table->double('invested', 0);
             $table->double('percent', 0);
             $table->smallInteger('active', 0);

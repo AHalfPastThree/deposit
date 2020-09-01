@@ -14,10 +14,10 @@ class CreateWalletsTable extends Migration
     public function up()
     {
         Schema::create('wallets', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->double('balance', 0);
+            $table->foreign('user_id')->references('id')->on('deposit.public.users')->onDelete('cascade');
+            $table->double('balance', 0)->default(0);
             $table->timestamp('created_at', 0); 
         });
     }
