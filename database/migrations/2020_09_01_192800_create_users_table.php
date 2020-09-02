@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->char('login', 30);
             $table->char('email', 191);
             $table->char('password', 191); 
-            $table->timestamp('created_at', 0);
+            $table->timestamp('created_at', 0)->useCurrent();
         });
     }
 

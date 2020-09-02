@@ -10,6 +10,17 @@ class Deposits extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'user_id', 
+        'wallet_id', 
+        'invested', 
+        'percent', 
+        'active', 
+        'duration', 
+        'accrue_times',
+    ];
+
+
     public function user()
 	{
 		return $this->belongsTo('App\User', 'foreign_key');

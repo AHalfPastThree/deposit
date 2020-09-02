@@ -24,7 +24,7 @@ class CreateDepositsTable extends Migration
             $table->smallInteger('active', 0);
             $table->smallInteger('duration', 0);
             $table->smallInteger('accrue_times', 0);
-            $table->timestamp('created_at', 0); 
+            $table->timestamp('created_at', 0)->useCurrent(); 
         });
     }
 

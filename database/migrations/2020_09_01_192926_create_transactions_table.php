@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('deposit_id')->nullable()->unsigned();
             $table->foreign('deposit_id')->references('id')->on('deposit.public.deposits')->onDelete('cascade');
             $table->double('amount', 0);
-            $table->timestamp('created_at', 0);
+            $table->timestamp('created_at', 0)->useCurrent();
         });
     }
 

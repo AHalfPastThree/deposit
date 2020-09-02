@@ -5,12 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
-    protected $primaryKey = 'id';
 
     protected $table = 'users';
 
@@ -22,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'login', 'email', 'password',
     ];
 
     /**
@@ -31,8 +30,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'id',
     ];
+
+    public function getAuthPassword()
+    {
+        return Hash::make(request()->get('password'));
+    }
 
     public function wallet()
     {
@@ -46,6 +50,6 @@ class User extends Authenticatable
 
     public function transactions()
     {
-        return $this->hasMany('App\Deposits');
+        return $this->hasMany('App\Transactions');
     }
 }

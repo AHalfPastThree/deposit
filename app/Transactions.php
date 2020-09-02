@@ -10,6 +10,10 @@ class Transactions extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'type', 'user_id', 'wallet_id', 'deposit_id', 'amount',
+    ];
+
     public function user()
 	{
 		return $this->belongsTo('App\User', 'foreign_key');

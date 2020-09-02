@@ -18,7 +18,7 @@ class CreateWalletsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('deposit.public.users')->onDelete('cascade');
             $table->double('balance', 0)->default(0);
-            $table->timestamp('created_at', 0); 
+            $table->timestamp('created_at', 0)->useCurrent(); 
         });
     }
 
