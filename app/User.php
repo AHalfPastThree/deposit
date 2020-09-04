@@ -43,10 +43,15 @@ class User extends Authenticatable
         return $this->hasOne('App\Wallets');
     }
 
-    public function deposit()
+    public function deposits()
     {
-        return $this->hasOne('App\Deposits');
+        return $this->hasMany('App\Deposits');
     }
+
+    public function deposit($column = 'created_at')
+    {
+        return $this->deposits()->latest()->first();
+    } 
 
     public function transactions()
     {

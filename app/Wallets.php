@@ -16,12 +16,12 @@ class Wallets extends Model
 
     public function user()
 	{
-		return $this->belongsTo('App\User', 'foreign_key');
+		return $this->belongsTo('App\User', 'user_id');
 	}
 
 	public function deposit()
     {
-        return $this->hasOne('App\Deposits');
+        return $this->hasOne('App\Deposits', 'wallet_id');
     }
 
     public function transactions()

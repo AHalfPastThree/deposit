@@ -23,16 +23,27 @@ class Deposits extends Model
 
     public function user()
 	{
-		return $this->belongsTo('App\User', 'foreign_key');
+		return $this->belongsTo('App\User', 'user_id');
 	}
 
 	public function wallet()
 	{
-		return $this->belongsTo('App\Wallets', 'foreign_key');
+		return $this->belongsTo('App\Wallets', 'wallet_id');
 	}
 
 	public function transactions()
     {
-        return $this->hasMany('App\Deposits');
+        return $this->hasMany('App\Transactions', 'deposit_id');
     }
+
+    public function sum()
+	{
+        $sum = 0;
+		foreach($this->transactions as $transaction){
+            if($transaction->type != 'create_deposit'){
+                $sum = $sum + $transaction->amount;
+            }
+        }
+        return $sum;
+	}
 }

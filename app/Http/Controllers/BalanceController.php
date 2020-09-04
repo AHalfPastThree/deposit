@@ -16,20 +16,16 @@ class BalanceController extends Controller
 
     public function add(Request $request)
     {
-    	$user_id = $request->user()->id;
+    	$user = $request->user();
 
-		$wallet = Wallets::where('user_id', $user_id)->first();
-		$wallet->balance = floatval($wallet->balance) + floatval($request->input('balance'));
-		$wallet->save();
-
-		$deposite = $wallet->deposit();
+		$user->wallet->update(['balance' => floatval($user->wallet->balance) + floatval($request->input('balance'))]);
 
     	Transactions::create([
     		'type' => 'enter',
-    		'user_id' => $user_id,
-    		'wallet_id' => $wallet->id,
-    		'deposit_id' => $deposite ? $deposite->id : null,
-    		'amount' => $request->input('balance'),
+    		'user_id' => $user->id,
+    		'wallet_id' => $user->wallet->id,
+    		'deposit_id' => $user->wallet->deposit_id ? $user->wallet->deposit_id : null,
+    		'amount' => floatval($request->input('balance')),
     	]);
 
     	return redirect()->back();

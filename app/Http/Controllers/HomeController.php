@@ -9,15 +9,12 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->user()) {
-            $user = $request->user()->id;
-            $user_wallet = Wallets::where('user_id', $user)->first();
-        }else{
-            $user_wallet['balance'] = null;
-        }
+        $user = $request->user();
 
         return view('home')->with([
-            'balance' => $user_wallet['balance']
+            'balance' => $user ? $user->wallet->balance : null,
+            'deposits' => $user ? $user->deposits : null,
+            'transactions' => $user ? $user->transactions : null
         ]);
     }
 }

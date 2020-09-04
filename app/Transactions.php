@@ -16,16 +16,16 @@ class Transactions extends Model
 
     public function user()
 	{
-		return $this->belongsTo('App\User', 'foreign_key');
+		return $this->belongsTo('App\User', 'user_id');
 	}
 
 	public function wallet()
 	{
-		return $this->belongsTo('App\User', 'foreign_key');
+		return $this->belongsTo('App\User', 'wallet_id');
 	}
 
 	public function deposit()
 	{
-		return $this->belongsTo('App\Deposits', 'foreign_key');
+		return $this->belongsTo('App\Deposits');
 	}
 }
