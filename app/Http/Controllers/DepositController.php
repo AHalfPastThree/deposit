@@ -13,6 +13,11 @@ class DepositController extends Controller
     	$this->middleware('auth');
     }
 
+	/**
+     * Add new deposit
+     *
+     * @return void
+     */
     public function add(Request $request)
     {
     	$user = $request->user();

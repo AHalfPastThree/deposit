@@ -12,8 +12,13 @@ class BalanceController extends Controller
     public function __construct()
     {
     	$this->middleware('auth');
-    }
-
+	}
+	
+	/**
+     * Add entered points to user balance
+     *
+     * @return float
+     */
     public function add(Request $request)
     {
     	$user = $request->user();

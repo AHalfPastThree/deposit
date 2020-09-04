@@ -61,7 +61,7 @@
                                         <th>Invested</th>
                                         <th>Percent</th>
                                         <th>Accrue</th>
-                                        <th>Summ</th>
+                                        <th>Sum</th>
                                         <th>Status</th>
                                         <th>Date</th>
                                     </tr>

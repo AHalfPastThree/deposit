@@ -36,6 +36,11 @@ class Deposits extends Model
         return $this->hasMany('App\Transactions', 'deposit_id');
     }
 
+    /**
+     * Return an amount of charges
+     *
+     * @return float
+     */
     public function sum()
 	{
         $sum = 0;
